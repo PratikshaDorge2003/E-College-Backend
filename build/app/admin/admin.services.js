@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const admin_schema_1 = require("./admin.schema");
 const create = (admin) => admin_schema_1.AdminModel.create(admin);
+const uploadDoc = (document) => admin_schema_1.DocModel.create(document);
 const find = (filter) => admin_schema_1.AdminModel.findOne(Object.assign(Object.assign({}, filter), { isDeleted: false }));
 const get = () => {
     return admin_schema_1.AdminModel.find({ isDeleted: false }).exec();
@@ -68,5 +69,5 @@ const del = (Email) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.default = {
-    create, register, get, del, login
+    create, register, get, del, login, uploadDoc
 };

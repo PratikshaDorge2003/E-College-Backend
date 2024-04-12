@@ -14,7 +14,7 @@ const create = (admin) => student_schema_1.StudentModel.create(admin);
 const register = (details) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield create(details);
-        return response;
+        return "Successfully registered";
     }
     catch (error) {
         throw error;

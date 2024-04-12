@@ -8,7 +8,7 @@ const create = (admin:studentDetails) => StudentModel.create(admin);
 const register = async (details: studentDetails) => {
     try {
         const response = await create(details);
-        return response;
+        return "Successfully registered";
     }
     catch (error) {
         throw error;

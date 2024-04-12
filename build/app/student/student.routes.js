@@ -21,6 +21,7 @@ router.post("/register", (req, res, next) => __awaiter(void 0, void 0, void 0, f
         const details = req.body;
         console.log(details);
         const response = yield student_services_1.default.register(details);
+        console.log(response);
         res.send(new response_handler_1.responseHandler(response));
     }
     catch (error) {

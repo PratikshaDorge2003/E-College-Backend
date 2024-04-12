@@ -21,7 +21,6 @@ const studentRegisterSchema = new mongoose_1.Schema({
     },
     lastName: {
         type: String,
-        required: true,
     },
     gender: {
         type: String,
@@ -34,9 +33,6 @@ const studentRegisterSchema = new mongoose_1.Schema({
         type: String,
     },
     phoneNumber: {
-        type: String,
-    },
-    phoneNumber2: {
         type: String,
     },
     fatherFirstName: {
@@ -65,19 +61,21 @@ const studentRegisterSchema = new mongoose_1.Schema({
     },
     govtID: {
         type: String,
+        required: true
     },
     email: {
         type: String,
-        required: true,
     },
     addressLine: {
         type: String,
-        required: true,
     },
     place: {
         type: String,
     },
     pinCode: {
+        type: String,
+    },
+    DOB: {
         type: String,
     },
     isDeleted: {

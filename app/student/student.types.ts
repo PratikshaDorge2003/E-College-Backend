@@ -4,11 +4,11 @@ export interface studentDetails{
     admissionDate : string;
     firstName:string;
     lastName:string;
+    DOB:string;
     gender:string;
     marriageStatus:string;
     physicalDisability:string;
     phoneNumber:string;
-    phoneNumber2 :string;
     fatherFirstName :string;
     fatherLastName:string;
     motherFirstName:string;
