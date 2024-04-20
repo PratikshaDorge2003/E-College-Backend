@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DocModel = exports.AdminModel = void 0;
+exports.AdminModel = void 0;
 const mongoose_1 = require("mongoose");
 const adminSchema = new mongoose_1.Schema({
     userName: {
@@ -21,14 +21,3 @@ const adminSchema = new mongoose_1.Schema({
     }
 });
 exports.AdminModel = (0, mongoose_1.model)("AdminValidation", adminSchema);
-const DocSchema = new mongoose_1.Schema({
-    fileName: {
-        type: String,
-        required: true
-    },
-    document: {
-        type: String,
-        required: true
-    }
-});
-exports.DocModel = (0, mongoose_1.model)("documents", DocSchema);

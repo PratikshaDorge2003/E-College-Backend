@@ -14,13 +14,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const response_handler_1 = require("../utility/response.handler");
-const student_services_1 = __importDefault(require("./student.services"));
+const professor_services_1 = __importDefault(require("./professor.services"));
 const router = (0, express_1.Router)();
 router.post("/register", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const details = req.body;
-        console.log(details);
-        const response = yield student_services_1.default.register(details);
+        const response = yield professor_services_1.default.create(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
+router.post("/approve", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield professor_services_1.default.update(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
+router.post("/del", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield professor_services_1.default.deleteProfessor(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
+router.get("/registered", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield professor_services_1.default.getDetails();
         res.send(new response_handler_1.responseHandler(response));
     }
     catch (error) {

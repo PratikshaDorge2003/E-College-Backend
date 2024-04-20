@@ -7,7 +7,9 @@ exports.routes = void 0;
 const routes_type_1 = require("./routes.type");
 const admin_routes_1 = __importDefault(require("../admin/admin.routes"));
 const student_routes_1 = __importDefault(require("../student/student.routes"));
+const professor_routes_1 = __importDefault(require("../professor/professor.routes"));
 exports.routes = [
     new routes_type_1.Routes("/admin", admin_routes_1.default),
-    new routes_type_1.Routes("/student", student_routes_1.default)
+    new routes_type_1.Routes("/student", student_routes_1.default),
+    new routes_type_1.Routes("/professor", professor_routes_1.default)
 ];
