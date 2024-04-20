@@ -6,7 +6,7 @@ export interface studentDetails{
     lastName:string;
     DOB:string;
     gender:string;
-    marriageStatus:string;
+    department:string;
     physicalDisability:string;
     phoneNumber:string;
     fatherFirstName :string;
@@ -22,4 +22,13 @@ export interface studentDetails{
     addressLine:string;
     place:string;
     pinCode:string
+}
+
+export interface numberDetails{
+    total : string
+}
+
+export interface studentLoginDetail{
+    userName: string,
+    password: string
 }

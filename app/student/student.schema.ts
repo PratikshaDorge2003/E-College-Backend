@@ -1,5 +1,5 @@
 import { Document,Schema,model } from "mongoose";
-import { studentDetails} from "./student.types";
+import { numberDetails, studentDetails, studentLoginDetail} from "./student.types";
 
 const studentRegisterSchema=new Schema({
     registrationID: {
@@ -25,7 +25,7 @@ const studentRegisterSchema=new Schema({
         type: String,
         required: true,
     },
-    marriageStatus: {
+    department: {
         type: String,
     },
     physicalDisability: {
@@ -85,3 +85,22 @@ const studentRegisterSchema=new Schema({
 })
 
 export const StudentModel=model<Document & studentDetails>("StudentDetails", studentRegisterSchema)
+
+const numberSchema= new Schema({
+    total:{
+        type:String
+    },
+})
+
+export const NumberModel=model<Document & numberDetails>("serial", numberSchema)
+
+const studentLoginSchema= new Schema({
+    userName:{
+        type:String
+    },
+    password:{
+        type:String
+    }
+})
+
+export const StudentLoginModel=model<Document & studentLoginDetail>("studentLogin", studentLoginSchema)

@@ -17,7 +17,6 @@ export interface IProfessor2{
     email:string;
     password:string;
     department :string;
-    subject : string;
     SR_ID : string;
     isDeleted:boolean;
     approved : boolean

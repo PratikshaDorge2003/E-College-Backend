@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StudentModel = void 0;
+exports.StudentLoginModel = exports.NumberModel = exports.StudentModel = void 0;
 const mongoose_1 = require("mongoose");
 const studentRegisterSchema = new mongoose_1.Schema({
     registrationID: {
@@ -26,7 +26,7 @@ const studentRegisterSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    marriageStatus: {
+    department: {
         type: String,
     },
     physicalDisability: {
@@ -84,3 +84,18 @@ const studentRegisterSchema = new mongoose_1.Schema({
     }
 });
 exports.StudentModel = (0, mongoose_1.model)("StudentDetails", studentRegisterSchema);
+const numberSchema = new mongoose_1.Schema({
+    total: {
+        type: String
+    },
+});
+exports.NumberModel = (0, mongoose_1.model)("serial", numberSchema);
+const studentLoginSchema = new mongoose_1.Schema({
+    userName: {
+        type: String
+    },
+    password: {
+        type: String
+    }
+});
+exports.StudentLoginModel = (0, mongoose_1.model)("studentLogin", studentLoginSchema);

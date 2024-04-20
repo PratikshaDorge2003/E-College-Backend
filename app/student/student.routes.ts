@@ -8,6 +8,7 @@ const router = Router();
 router.post("/register", async (req, res, next) => {
     try {
         const details: studentDetails = req.body;
+        
         console.log(details);
         const response = await studentServices.register(details);
         res.send(new responseHandler(response));
