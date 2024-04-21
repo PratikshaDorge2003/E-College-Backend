@@ -28,4 +28,69 @@ router.post("/register", (req, res, next) => __awaiter(void 0, void 0, void 0, f
         next(error);
     }
 }));
+router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield student_services_1.default.login(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
+router.post("/bonafide-request", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield student_services_1.default.bonafideRequest(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
+router.post("/bonafide-status", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield student_services_1.default.bonafideStatus(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
+router.get("/getBonafide", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield student_services_1.default.getBonafide();
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
+router.post("/bonafide-disapproval", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield student_services_1.default.bonafideDisapproved(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
+router.post("/bonafide-approval", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield student_services_1.default.bonafideApproved(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
 exports.default = router;

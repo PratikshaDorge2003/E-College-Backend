@@ -32,3 +32,24 @@ export interface studentLoginDetail{
     userName: string,
     password: string
 }
+
+export interface bonafideDetails{
+    name : string,
+    enrollment : string,
+    course : string,
+    semester : string,
+    reason : string,
+    email : string,
+    userName : string
+}
+
+export interface studentID{
+    userName : string
+}
+
+export interface disapproveDetails{
+    disapproval : string,
+    userName:string
+}
+
+

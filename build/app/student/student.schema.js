@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StudentLoginModel = exports.NumberModel = exports.StudentModel = void 0;
+exports.BonafideModel = exports.StudentLoginModel = exports.NumberModel = exports.StudentModel = void 0;
 const mongoose_1 = require("mongoose");
 const studentRegisterSchema = new mongoose_1.Schema({
     registrationID: {
@@ -96,6 +96,42 @@ const studentLoginSchema = new mongoose_1.Schema({
     },
     password: {
         type: String
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
 });
 exports.StudentLoginModel = (0, mongoose_1.model)("studentLogin", studentLoginSchema);
+const bonafideSchema = new mongoose_1.Schema({
+    name: {
+        type: String
+    },
+    enrollment: {
+        type: String
+    },
+    course: {
+        type: String,
+    },
+    semester: {
+        type: String
+    },
+    reason: {
+        type: String,
+    },
+    email: {
+        type: String,
+    },
+    userName: {
+        type: String
+    },
+    status: {
+        type: String,
+        default: "pending"
+    },
+    disapprovedReason: {
+        type: String,
+        default: ""
+    }
+});
+exports.BonafideModel = (0, mongoose_1.model)("bonafideRequest", bonafideSchema);

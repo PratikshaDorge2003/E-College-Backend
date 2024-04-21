@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const student_schema_1 = require("./student.schema");
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const create = (admin) => student_schema_1.StudentModel.create(admin);
+const find = (filter) => student_schema_1.StudentLoginModel.findOne(Object.assign(Object.assign({}, filter), { isDeleted: false }));
 const register = (details) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const admissionDate = details.admissionDate;
@@ -45,6 +46,101 @@ const register = (details) => __awaiter(void 0, void 0, void 0, function* () {
         throw error;
     }
 });
+const login = (details) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const student = yield find({ userName: details.userName });
+        if (!student)
+            throw "Invalid Email ID";
+        if (student.password !== details.password)
+            throw "Invalid Password";
+        return "Login Successful";
+    }
+    catch (error) {
+        throw error;
+    }
+});
+const bonafideRequest = (details) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield student_schema_1.BonafideModel.find({ userName: details.userName });
+        console.log(result);
+        if (!result.length) {
+            const student = yield student_schema_1.BonafideModel.create(details);
+            return "Certificate application submitted for verification";
+        }
+        else {
+            const update = yield student_schema_1.BonafideModel.updateOne({ userName: details.userName }, {
+                $set: {
+                    name: details.name,
+                    enrollment: details.enrollment,
+                    course: details.course,
+                    semester: details.semester,
+                    reason: details.reason,
+                    email: details.email,
+                    status: "pending",
+                    disapprovedReason: ""
+                }
+            });
+            return "Certificate Reapplied for verification";
+        }
+    }
+    catch (error) {
+        throw error;
+    }
+});
+const bonafideStatus = (details) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const student = yield student_schema_1.BonafideModel.find({ userName: details.userName });
+        if (!student) {
+            return "No Bonafide Submissions";
+        }
+        return student;
+    }
+    catch (error) {
+        throw error;
+    }
+});
+const getBonafide = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield student_schema_1.BonafideModel.find({ status: "pending" });
+        return result;
+    }
+    catch (error) {
+        console.error("Error fetching details:", error);
+        throw error;
+    }
+});
+const bonafideDisapproved = (details) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log(details);
+        const result = yield student_schema_1.BonafideModel.updateOne({ userName: details.userName }, {
+            $set: {
+                status: "disapproved",
+                disapprovedReason: details.disapproval
+            }
+        });
+        return result;
+    }
+    catch (error) {
+        console.error("Error fetching details:", error);
+        throw error;
+    }
+});
+const bonafideApproved = (details) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log(details);
+        const result = yield student_schema_1.BonafideModel.updateOne({ userName: details.userName }, {
+            $set: {
+                status: "approved",
+                disapprovedReason: ""
+            }
+        });
+        return result;
+    }
+    catch (error) {
+        console.error("Error fetching details:", error);
+        throw error;
+    }
+});
 const sendMail = (details) => {
     const transporter = nodemailer_1.default.createTransport({
         service: 'gmail',
@@ -71,5 +167,5 @@ const sendMail = (details) => {
     });
 };
 exports.default = {
-    register
+    register, login, bonafideRequest, bonafideStatus, getBonafide, bonafideDisapproved, bonafideApproved
 };

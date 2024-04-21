@@ -1,5 +1,5 @@
 import { Document,Schema,model } from "mongoose";
-import { numberDetails, studentDetails, studentLoginDetail} from "./student.types";
+import { bonafideDetails, numberDetails, studentDetails, studentLoginDetail} from "./student.types";
 
 const studentRegisterSchema=new Schema({
     registrationID: {
@@ -100,7 +100,47 @@ const studentLoginSchema= new Schema({
     },
     password:{
         type:String
+    },
+    isDeleted:{
+        type: Boolean,
+        default:false
     }
+
 })
 
 export const StudentLoginModel=model<Document & studentLoginDetail>("studentLogin", studentLoginSchema)
+
+const bonafideSchema= new Schema({
+    name:{
+        type:String
+    },
+    enrollment:{
+        type:String
+    },
+    course:{
+        type: String,
+    },
+    semester:{
+        type:String
+    },
+    reason:{
+        type:String,
+    },
+    email:{
+        type:String,
+    },
+    userName:{
+        type:String
+    },
+    status:{
+        type:String,
+        default:"pending"
+    },
+    disapprovedReason :{
+        type:String,
+        default:""
+    }
+
+})
+
+export const BonafideModel=model<Document & bonafideDetails>("bonafideRequest", bonafideSchema)
