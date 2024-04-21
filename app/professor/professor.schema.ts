@@ -1,5 +1,5 @@
 import { Schema, model,Document } from "mongoose";
-import { IProfessor } from "./professor.types";
+import { IProfessor, professorLoginDetails } from "./professor.types";
 
 
 const professorSchema=new Schema({
@@ -35,12 +35,32 @@ const professorSchema=new Schema({
         type:Boolean,
         default:false
     },
-
     approved:{
         type:Boolean,
         default:false
+    },
+    subject:{
+        type:String,
+        default:""
     }
    
 })
 
 export const ProfessorModel=model<Document & IProfessor>("ProfessorValidation", professorSchema)
+
+
+const professorLoginSchema= new Schema({
+    userName:{
+        type:String
+    },
+    password:{
+        type:String
+    },
+    isDeleted:{
+        type: Boolean,
+        default:false
+    }
+
+})
+
+export const ProfessorLoginModel=model<Document & professorLoginDetails>("professorLogin", professorLoginSchema)

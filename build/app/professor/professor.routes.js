@@ -38,6 +38,28 @@ router.post("/approve", (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         next(error);
     }
 }));
+router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield professor_services_1.default.login(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
+router.post("/getStudent", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield professor_services_1.default.getStudent(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
 router.post("/del", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const details = req.body;

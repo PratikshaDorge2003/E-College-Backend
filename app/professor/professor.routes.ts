@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { responseHandler } from "../utility/response.handler";
-import { IProfessor, IProfessor2 } from "./professor.types";
+import { IProfessor, IProfessor2, professorID, professorLoginDetails } from "./professor.types";
 import professorServices from "./professor.services";
 
 const router = Router();
@@ -27,6 +27,30 @@ router.post("/approve", async (req, res, next) => {
         console.log(error);
         next(error);
     }
+})
+
+router.post("/login", async (req, res, next) => {
+  try {
+      const details: professorLoginDetails = req.body;
+      const response = await professorServices.login(details);
+      res.send(new responseHandler(response));
+  }
+  catch (error) {
+      console.log(error);
+      next(error);
+  }
+})
+
+router.post("/getStudent", async (req, res, next) => {
+  try {
+      const details: professorID = req.body;
+      const response = await professorServices.getStudent(details);
+      res.send(new responseHandler(response));
+  }
+  catch (error) {
+      console.log(error);
+      next(error);
+  }
 })
 
 router.post("/del", async (req, res, next) => {

@@ -19,6 +19,16 @@ export interface IProfessor2{
     department :string;
     SR_ID : string;
     isDeleted:boolean;
-    approved : boolean
+    approved : boolean;
+    subject :string;
 
+}
+
+export interface professorLoginDetails{
+    userName: string,
+    password: string
+}
+
+export interface professorID{
+    userName : string
 }

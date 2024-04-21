@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProfessorModel = void 0;
+exports.ProfessorLoginModel = exports.ProfessorModel = void 0;
 const mongoose_1 = require("mongoose");
 const professorSchema = new mongoose_1.Schema({
     firstName: {
@@ -38,6 +38,23 @@ const professorSchema = new mongoose_1.Schema({
     approved: {
         type: Boolean,
         default: false
+    },
+    subject: {
+        type: String,
+        default: ""
     }
 });
 exports.ProfessorModel = (0, mongoose_1.model)("ProfessorValidation", professorSchema);
+const professorLoginSchema = new mongoose_1.Schema({
+    userName: {
+        type: String
+    },
+    password: {
+        type: String
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
+    }
+});
+exports.ProfessorLoginModel = (0, mongoose_1.model)("professorLogin", professorLoginSchema);
