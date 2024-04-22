@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { responseHandler } from "../utility/response.handler";
-import { IProfessor, IProfessor2, professorID, professorLoginDetails } from "./professor.types";
+import { IProfessor, IProfessor2, professorID, professorLoginDetails, professorSubject } from "./professor.types";
 import professorServices from "./professor.services";
 
 const router = Router();
@@ -75,5 +75,33 @@ router.get("/registered", async (req, res, next) => {
         next(error);
     }
 })
+
+router.post("/getSubject", async (req, res, next) => {
+  try {
+    const details: professorID = req.body;
+    const response = await professorServices.getSubjects(details);
+    res.send(new responseHandler(response));
+  }
+  catch (error) {
+      console.log(error);
+      next(error);
+  }
+})
+
+router.post("/assign-Subject", async (req, res, next) => {
+  try {
+    const details: professorSubject = req.body;
+    const response = await professorServices.assignSub(details);
+    res.send(new responseHandler(response));
+  }
+  catch (error) {
+      console.log(error);
+      next(error);
+  }
+})
+
+
+
+
 
 export default router

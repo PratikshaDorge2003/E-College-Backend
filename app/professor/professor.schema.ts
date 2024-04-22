@@ -1,5 +1,5 @@
 import { Schema, model,Document } from "mongoose";
-import { IProfessor, professorLoginDetails } from "./professor.types";
+import { IProfessor, professorLoginDetails, subject } from "./professor.types";
 
 
 const professorSchema=new Schema({
@@ -64,3 +64,29 @@ const professorLoginSchema= new Schema({
 })
 
 export const ProfessorLoginModel=model<Document & professorLoginDetails>("professorLogin", professorLoginSchema)
+
+const subjectSchema = new Schema({
+    department: { type: String, required: true },
+    subject1: {
+        name: { type: String, required: true },
+        status: { type: String, default: "Not Assigned"}
+    },
+    subject2: {
+        name: { type: String, required: true },
+        status: { type: String,  default: "Not Assigned" }
+    },
+    subject3: {
+        name: { type: String, required: true },
+        status: { type: String,  default: "Not Assigned"}
+    },
+    subject4: {
+        name: { type: String, required: true },
+        status: { type: String, default: "Not Assigned" }
+    },
+    subject5: {
+        name: { type: String, required: true },
+        status: { type: String,  default: "Not Assigned"}
+    }
+});
+
+export const subjectModel=model<Document & subject>("subjects", subjectSchema)

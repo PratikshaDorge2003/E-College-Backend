@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProfessorLoginModel = exports.ProfessorModel = void 0;
+exports.subjectModel = exports.ProfessorLoginModel = exports.ProfessorModel = void 0;
 const mongoose_1 = require("mongoose");
 const professorSchema = new mongoose_1.Schema({
     firstName: {
@@ -58,3 +58,27 @@ const professorLoginSchema = new mongoose_1.Schema({
     }
 });
 exports.ProfessorLoginModel = (0, mongoose_1.model)("professorLogin", professorLoginSchema);
+const subjectSchema = new mongoose_1.Schema({
+    department: { type: String, required: true },
+    subject1: {
+        name: { type: String, required: true },
+        status: { type: String, default: "Not Assigned" }
+    },
+    subject2: {
+        name: { type: String, required: true },
+        status: { type: String, default: "Not Assigned" }
+    },
+    subject3: {
+        name: { type: String, required: true },
+        status: { type: String, default: "Not Assigned" }
+    },
+    subject4: {
+        name: { type: String, required: true },
+        status: { type: String, default: "Not Assigned" }
+    },
+    subject5: {
+        name: { type: String, required: true },
+        status: { type: String, default: "Not Assigned" }
+    }
+});
+exports.subjectModel = (0, mongoose_1.model)("subjects", subjectSchema);

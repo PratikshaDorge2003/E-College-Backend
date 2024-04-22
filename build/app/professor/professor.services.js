@@ -79,6 +79,55 @@ const getStudent = (details) => __awaiter(void 0, void 0, void 0, function* () {
         throw error;
     }
 });
+const getSubjects = (details) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield professor_schema_1.ProfessorModel.findOne({ approved: true, isDeleted: false, SR_ID: details.userName });
+        if (result) {
+            const response = yield professor_schema_1.subjectModel.findOne({ department: result.department });
+            return response;
+        }
+        return "Invalid UserName";
+    }
+    catch (error) {
+        throw error;
+    }
+});
+const assignSub = (details) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield professor_schema_1.ProfessorModel.findOne({ approved: true, isDeleted: false, SR_ID: details.userName });
+        if (result) {
+            const id = result._id;
+            const updateResult = yield professor_schema_1.ProfessorModel.updateOne({ _id: id }, { $set: { subject: details.subjects } });
+            const result2 = yield professor_schema_1.subjectModel.find({ department: result.department });
+            console.log(result2);
+            console.log(details.subjects);
+            result2.forEach((subject) => __awaiter(void 0, void 0, void 0, function* () {
+                console.log(subject);
+                if (details.subjects.includes(subject.subject1.name)) {
+                    subject.subject1.status = "Assigned";
+                }
+                if (details.subjects.includes(subject.subject2.name)) {
+                    subject.subject2.status = "Assigned";
+                }
+                if (details.subjects.includes(subject.subject3.name)) {
+                    subject.subject3.status = "Assigned";
+                }
+                if (details.subjects.includes(subject.subject4.name)) {
+                    subject.subject4.status = "Assigned";
+                }
+                if (details.subjects.includes(subject.subject5.name)) {
+                    subject.subject5.status = "Assigned";
+                }
+                yield subject.save();
+            }));
+            return updateResult;
+        }
+        return "Invalid UserName";
+    }
+    catch (error) {
+        throw error;
+    }
+});
 const sendMail = (details) => {
     const transporter = nodemailer_1.default.createTransport({
         service: 'gmail',
@@ -105,5 +154,5 @@ const sendMail = (details) => {
     });
 };
 exports.default = {
-    create, getDetails, update, deleteProfessor, login, getStudent
+    create, getDetails, update, deleteProfessor, login, getStudent, getSubjects, assignSub
 };

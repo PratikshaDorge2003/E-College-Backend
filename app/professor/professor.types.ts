@@ -32,3 +32,34 @@ export interface professorLoginDetails{
 export interface professorID{
     userName : string
 }
+
+export interface subject {
+    department : string,
+    subject1 : {
+        name :string,
+        status:string
+    }
+    subject2 : {
+        name :string,
+        status:string
+    }
+    subject3 : {
+        name :string,
+        status:string
+    }
+    subject4 : {
+        name :string,
+        status:string
+    }
+    subject5 : {
+        name :string,
+        status:string
+    }
+
+
+}
+
+export interface professorSubject{
+    subjects : string,
+    userName : string
+}

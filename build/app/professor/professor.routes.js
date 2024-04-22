@@ -81,4 +81,26 @@ router.get("/registered", (req, res, next) => __awaiter(void 0, void 0, void 0, 
         next(error);
     }
 }));
+router.post("/getSubject", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield professor_services_1.default.getSubjects(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
+router.post("/assign-Subject", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const details = req.body;
+        const response = yield professor_services_1.default.assignSub(details);
+        res.send(new response_handler_1.responseHandler(response));
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+}));
 exports.default = router;
